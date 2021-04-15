@@ -1,4 +1,4 @@
-# thomshouse dotfiles
+# jordanpartridge dotfiles
 
 Based on [holman's dotfiles](https://github.com/holman/dotfiles).
 Tweaked and tailored for my personal needs and desired.
@@ -58,7 +58,7 @@ There's a few special files in the hierarchy.
 Run this:
 
 ```sh
-git clone https://github.com/holman/dotfiles.git ~/.dotfiles
+git clone https://github.com/jordanpartridge/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
 ```
