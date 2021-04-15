@@ -1,5 +1,23 @@
-syntax on
+syntax enable
 set backspace=indent,eol,start
+
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+
+
+set number
+set linespace=15
+
+let mapleader = ','
+
+set hlsearch
+
+ "----------------------Mappings---------------------------------------"
+ nmap <Leader>ev :tabedit $MYVIMRC<cr>
+ nmap <Leader>zs :tabedit ~/.zshrc<cr>
+ nmap <Leader>q   :q <cr>
+ map <Leader>wq  :wq<cr>
+ map <Leader><space>  :nohlsearch<cr>
+ map <Leader>1    :q!<cr>
+ autocmd BufWritePost  .vimrc source %
