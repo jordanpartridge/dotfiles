@@ -1,0 +1,48 @@
+" Pretty vim config for git commits and quick edits
+
+" --- Appearance ---
+syntax on                      " Syntax highlighting
+set background=dark            " Dark theme
+colorscheme habamax            " Modern built-in colorscheme (vim 9+)
+set number                     " Line numbers
+set relativenumber             " Relative line numbers
+set cursorline                 " Highlight current line
+set signcolumn=yes             " Always show sign column
+set termguicolors              " True color support
+
+" --- Behavior ---
+set mouse=a                    " Mouse support
+set clipboard=unnamedplus      " System clipboard
+set scrolloff=8                " Keep 8 lines above/below cursor
+set sidescrolloff=8            " Keep 8 columns left/right
+set nowrap                     " Don't wrap lines
+set hidden                     " Allow unsaved buffers
+
+" --- Indentation ---
+set tabstop=4                  " Tab = 4 spaces
+set shiftwidth=4               " Indent = 4 spaces
+set expandtab                  " Tabs → spaces
+set smartindent                " Smart auto-indent
+set autoindent                 " Keep indent on new line
+
+" --- Search ---
+set ignorecase                 " Case insensitive search
+set smartcase                  " Unless uppercase used
+set incsearch                  " Search as you type
+set hlsearch                   " Highlight matches
+
+" --- Git commit specific ---
+autocmd FileType gitcommit setlocal spell          " Spellcheck commits
+autocmd FileType gitcommit setlocal textwidth=72   " Wrap at 72 chars
+autocmd FileType gitcommit setlocal colorcolumn=73 " Show column guide
+
+" --- Status line ---
+set laststatus=2               " Always show status
+set showmode                   " Show current mode
+set ruler                      " Show cursor position
+
+" --- Quality of life ---
+set updatetime=300             " Faster updates
+set timeoutlen=500             " Faster key sequences
+set wildmenu                   " Better command completion
+set wildmode=longest:full,full " Tab completion behavior
