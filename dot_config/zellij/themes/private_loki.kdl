@@ -1,0 +1,20 @@
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  LOKI THEME - Dark Void & Ghostly Whispers
+//  Norse-inspired dark mode with high contrast
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+themes {
+    loki {
+        fg "#e6edf3"          // Ghostly silver
+        bg "#0d1117"          // The Void
+        black "#161b22"       // Void depths
+        red "#f85149"         // Ragnarok flames
+        green "#3fb950"       // Loki's emerald
+        yellow "#d29922"      // Asgardian gold
+        blue "#58a6ff"        // Jotunheim ice
+        magenta "#a371f7"     // Seidr magic
+        cyan "#39c5cf"        // Ghostly whispers
+        white "#b1bac4"       // Spectral silver
+        orange "#e3b341"      // Bright gold
+    }
+}

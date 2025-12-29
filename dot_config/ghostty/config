@@ -1,0 +1,85 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /home/jordan/.config/ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  LOKI THEME - Dark Void & Ghostly Whispers
+#  Norse-inspired dark mode with high contrast
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# The Void - deep charcoal darkness
+background = 0d1117
+foreground = e6edf3
+
+# Cursor - Seidr magic glow
+cursor-color = a371f7
+cursor-style = block
+cursor-style-blink = true
+
+# Selection - Bifrost shimmer
+selection-background = 264f78
+selection-foreground = e6edf3
+
+# Window styling
+window-padding-x = 12
+window-padding-y = 10
+
+# Color palette - Loki's domains
+# 0/8: Black - Void depths
+palette = 0=#161b22
+palette = 8=#484f58
+
+# 1/9: Red - Ragnarok flames
+palette = 1=#f85149
+palette = 9=#ff7b72
+
+# 2/10: Green - Loki's emerald (mischief)
+palette = 2=#3fb950
+palette = 10=#56d364
+
+# 3/11: Yellow - Asgardian gold
+palette = 3=#d29922
+palette = 11=#e3b341
+
+# 4/12: Blue - Jotunheim ice
+palette = 4=#58a6ff
+palette = 12=#79c0ff
+
+# 5/13: Magenta - Seidr magic
+palette = 5=#a371f7
+palette = 13=#bc8cff
+
+# 6/14: Cyan - Ghostly whispers
+palette = 6=#39c5cf
+palette = 14=#56d4dd
+
+# 7/15: White - Spectral silver
+palette = 7=#b1bac4
+palette = 15=#f0f6fc
+
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+
+# Subtle transparency - the veil between worlds
+background-opacity = 0.95
+keybind = shift+enter=text:\x1b\r

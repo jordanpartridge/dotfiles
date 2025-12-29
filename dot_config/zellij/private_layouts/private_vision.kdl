@@ -1,0 +1,124 @@
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  VISION - The All-Seeing Layout
+//  Alt+1: Claude  |  Alt+2: Code  |  Alt+3: System  |  Alt+4: Git
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
+        children
+    }
+
+    // TAB 1: Claude Command - Brain of the operation
+    tab name="CLAUDE" focus=true {
+        pane split_direction="vertical" {
+            pane size="70%" name="claude" {
+                command "claude"
+                cwd "~/vision"
+            }
+            pane split_direction="horizontal" {
+                pane name="run" {
+                    cwd "~/vision"
+                }
+                pane name="watch" {
+                    cwd "~/vision"
+                }
+            }
+        }
+    }
+
+    // TAB 2: Code - Editor + terminals
+    tab name="CODE" {
+        pane split_direction="vertical" {
+            pane size="65%" name="editor" {
+                command "zed"
+                args "."
+                cwd "~/vision"
+            }
+            pane split_direction="horizontal" {
+                pane name="term1" {
+                    cwd "~/vision"
+                }
+                pane name="term2" {
+                    cwd "~/vision"
+                }
+            }
+        }
+    }
+
+    // TAB 3: System - Monitor everything
+    tab name="SYSTEM" {
+        pane split_direction="vertical" {
+            pane size="60%" name="monitor" {
+                command "btop"
+            }
+            pane split_direction="horizontal" {
+                pane name="ollama" {
+                    command "bash"
+                    args "-c" "ollama list && echo '---' && echo 'Ready for: ollama run qwen2.5-coder:7b' && exec zsh"
+                }
+                pane name="services" {
+                    command "bash"
+                    args "-c" "systemctl --user status 2>/dev/null; exec zsh"
+                }
+            }
+        }
+    }
+
+    // TAB 4: Git - Version control central
+    tab name="GIT" {
+        pane split_direction="vertical" {
+            pane size="70%" name="lazygit" {
+                command "lazygit"
+                cwd "~/vision"
+            }
+            pane name="shell" {
+                cwd "~/vision"
+            }
+        }
+    }
+
+    // TAB 5: GitHub - Issues, PRs, Actions (with clickable links)
+    tab name="GITHUB" {
+        pane split_direction="vertical" {
+            pane split_direction="horizontal" size="50%" {
+                pane name="issues" {
+                    command "bash"
+                    args "-c" "echo '═══ OPEN ISSUES ═══' && gh issue list --limit 10 --json number,title,url --template '{{range .}}#{{.number}} {{.title}}\n{{.url}}\n\n{{end}}' 2>/dev/null || echo 'Run: gh auth login'; exec zsh"
+                    cwd "~/vision"
+                }
+                pane name="prs" {
+                    command "bash"
+                    args "-c" "echo '═══ PULL REQUESTS ═══' && gh pr list --limit 10 --json number,title,url,headRefName --template '{{range .}}#{{.number}} {{.title}} ({{.headRefName}})\n{{.url}}\n\n{{end}}' 2>/dev/null || echo 'No PRs'; exec zsh"
+                    cwd "~/vision"
+                }
+            }
+            pane split_direction="horizontal" {
+                pane name="actions" {
+                    command "bash"
+                    args "-c" "echo '═══ WORKFLOW RUNS ═══' && gh run list --limit 8 --json name,status,conclusion,url --template '{{range .}}{{.name}} [{{.status}}{{if .conclusion}}/{{.conclusion}}{{end}}]\n{{.url}}\n\n{{end}}' 2>/dev/null || echo 'No actions'; exec zsh"
+                    cwd "~/vision"
+                }
+                pane name="gh-shell" {
+                    cwd "~/vision"
+                }
+            }
+        }
+    }
+
+    // TAB 6: Docs - Reference & notes
+    tab name="DOCS" {
+        pane split_direction="horizontal" {
+            pane name="readme" {
+                command "bash"
+                args "-c" "glow ~/vision/README.md 2>/dev/null || cat ~/vision/README.md; exec zsh"
+                cwd "~/vision"
+            }
+            pane name="notes" {
+                cwd "~/vision/docs"
+            }
+        }
+    }
+}
