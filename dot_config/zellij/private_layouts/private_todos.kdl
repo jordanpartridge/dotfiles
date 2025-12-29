@@ -1,0 +1,84 @@
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  TODOS - Mission Control
+//  See all work, dispatch Claude instances to handle it
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
+        children
+    }
+
+    // TAB 1: The Board - all issues across repos
+    tab name="BOARD" focus=true {
+        pane split_direction="vertical" {
+            pane split_direction="horizontal" size="40%" {
+                pane name="my-issues" {
+                    command "bash"
+                    args "-c" "echo '═══ ASSIGNED TO ME ═══' && gh search issues --assignee=@me --state=open --limit 15 --json repository,number,title,url --template '{{range .}}{{.repository.nameWithOwner}}#{{.number}}: {{.title}}\n{{.url}}\n\n{{end}}' 2>/dev/null || echo 'gh auth login first'; exec zsh"
+                }
+                pane name="recent-prs" {
+                    command "bash"
+                    args "-c" "echo '═══ MY OPEN PRs ═══' && gh search prs --author=@me --state=open --limit 10 --json repository,number,title,url --template '{{range .}}{{.repository.nameWithOwner}}#{{.number}}: {{.title}}\n{{.url}}\n\n{{end}}' 2>/dev/null || echo 'No open PRs'; exec zsh"
+                }
+            }
+            pane split_direction="horizontal" {
+                pane name="prefrontal" {
+                    command "bash"
+                    args "-c" "echo '═══ PREFRONTAL ISSUES ═══' && cd ~/prefrontal-cortex 2>/dev/null && gh issue list --limit 10 --json number,title,labels,url --template '{{range .}}#{{.number}} {{.title}} {{range .labels}}[{{.name}}]{{end}}\n{{.url}}\n\n{{end}}' 2>/dev/null; exec zsh"
+                }
+                pane name="vision" {
+                    command "bash"
+                    args "-c" "echo '═══ VISION ISSUES ═══' && cd ~/vision 2>/dev/null && gh issue list --limit 10 --json number,title,url --template '{{range .}}#{{.number}} {{.title}}\n{{.url}}\n\n{{end}}' 2>/dev/null; exec zsh"
+                }
+            }
+        }
+    }
+
+    // TAB 2-4: Claude soldiers ready for dispatch
+    tab name="CLAUDE-1" {
+        pane split_direction="vertical" {
+            pane size="75%" name="claude" {
+                command "bash"
+                args "-c" "echo '🤖 Claude Instance 1 - Ready' && echo 'Paste an issue URL or describe the task' && echo '' && claude"
+            }
+            pane name="shell"
+        }
+    }
+
+    tab name="CLAUDE-2" {
+        pane split_direction="vertical" {
+            pane size="75%" name="claude" {
+                command "bash"
+                args "-c" "echo '🤖 Claude Instance 2 - Ready' && echo 'Paste an issue URL or describe the task' && echo '' && claude"
+            }
+            pane name="shell"
+        }
+    }
+
+    tab name="CLAUDE-3" {
+        pane split_direction="vertical" {
+            pane size="75%" name="claude" {
+                command "bash"
+                args "-c" "echo '🤖 Claude Instance 3 - Ready' && echo 'Paste an issue URL or describe the task' && echo '' && claude"
+            }
+            pane name="shell"
+        }
+    }
+
+    // TAB 5: Quick actions
+    tab name="DISPATCH" {
+        pane split_direction="horizontal" {
+            pane name="create-issue" {
+                command "bash"
+                args "-c" "echo '═══ CREATE ISSUE ═══' && echo 'gh issue create --repo owner/repo --title \"...\" --body \"...\"' && echo '' && exec zsh"
+            }
+            pane name="create-pr" {
+                command "bash"
+                args "-c" "echo '═══ CREATE PR ═══' && echo 'gh pr create --title \"...\" --body \"...\"' && echo '' && exec zsh"
+            }
+        }
+    }
+}
