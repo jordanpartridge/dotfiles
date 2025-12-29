@@ -1,0 +1,99 @@
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  PREFRONTAL CORTEX - Laravel Control Plane
+//  Alt+1: Claude  |  Alt+2: Tests  |  Alt+3: Logs  |  Alt+4: Git
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
+        children
+    }
+
+    // TAB 1: Claude + artisan
+    tab name="CLAUDE" focus=true {
+        pane split_direction="vertical" {
+            pane size="70%" name="claude" {
+                command "claude"
+            }
+            pane split_direction="horizontal" {
+                pane name="artisan" {
+                    command "bash"
+                    args "-c" "echo '🧠 Prefrontal Cortex' && echo 'sail artisan ...' && exec zsh"
+                }
+                pane name="shell"
+            }
+        }
+    }
+
+    // TAB 2: Tests - continuous until failure
+    tab name="TESTS" {
+        pane split_direction="vertical" {
+            pane size="70%" name="test-watch" {
+                command "bash"
+                args "-c" "echo '🧪 Test Watcher' && echo 'Run: sail artisan test --watch' && echo 'Or:  while sail artisan test; do sleep 2; done' && exec zsh"
+            }
+            pane split_direction="horizontal" {
+                pane name="coverage" {
+                    command "bash"
+                    args "-c" "echo '📊 Coverage' && echo 'sail artisan test --coverage' && exec zsh"
+                }
+                pane name="single" {
+                    command "bash"
+                    args "-c" "echo '🎯 Single Test' && echo 'sail artisan test --filter=TestName' && exec zsh"
+                }
+            }
+        }
+    }
+
+    // TAB 3: Logs - Pail + webhooks
+    tab name="LOGS" {
+        pane split_direction="horizontal" {
+            pane name="pail" {
+                command "bash"
+                args "-c" "echo '📨 Laravel Pail' && echo 'sail artisan pail' && exec zsh"
+            }
+            pane split_direction="vertical" {
+                pane name="webhooks" {
+                    command "bash"
+                    args "-c" "echo '🪝 Webhook Log' && echo 'tail -f storage/logs/laravel.log | grep -i webhook' && exec zsh"
+                }
+                pane name="queue" {
+                    command "bash"
+                    args "-c" "echo '⚡ Queue Worker' && echo 'sail artisan queue:work --tries=3' && exec zsh"
+                }
+            }
+        }
+    }
+
+    // TAB 4: Sail services
+    tab name="SAIL" {
+        pane split_direction="vertical" {
+            pane size="60%" name="sail-up" {
+                command "bash"
+                args "-c" "echo '⛵ Sail' && echo 'sail up' && exec zsh"
+            }
+            pane split_direction="horizontal" {
+                pane name="mysql" {
+                    command "bash"
+                    args "-c" "echo '🗄️  Database' && echo 'sail mysql' && exec zsh"
+                }
+                pane name="tinker" {
+                    command "bash"
+                    args "-c" "echo '🔮 Tinker' && echo 'sail artisan tinker' && exec zsh"
+                }
+            }
+        }
+    }
+
+    // TAB 5: Git
+    tab name="GIT" {
+        pane split_direction="vertical" {
+            pane size="70%" name="lazygit" {
+                command "lazygit"
+            }
+            pane name="shell"
+        }
+    }
+}
